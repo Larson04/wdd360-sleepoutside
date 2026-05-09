@@ -14,6 +14,14 @@ export function getLocalStorage(key:string) {
 export function setLocalStorage(key:string, data:any) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
+export function updateCart(key:string, data:any) {
+  const storedCart = getLocalStorage(key);
+  const cart = Array.isArray(storedCart) ? storedCart : [];
+  cart.push(data);
+  setLocalStorage(key, cart);
+}
+
 // set a listener for both touchend and click
 interface ClickHandler {
   (e:Event):void;
