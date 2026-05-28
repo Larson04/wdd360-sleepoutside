@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.3.0"
+    "astro": "^6.3.0",
+    "eslint": "^10.3.0"
   }
 }
