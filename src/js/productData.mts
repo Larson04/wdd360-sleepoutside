@@ -8,8 +8,8 @@ function convertToJson(res:Response) {
   }
 }
 
-export function getProducts(category = "tents") {
-  return fetch(baseURL + category)
+export async function getProducts(category = "tents") {
+  return await fetch(baseURL + `products?category=${category}`)
     .then(convertToJson)
     .then((data) => data);
 }
