@@ -140,6 +140,24 @@ header {
 .logo--square > div {
   margin-top: -1.7em;
 }
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.categories a {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+
+.categories img {
+  width: 100px;
+}
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
