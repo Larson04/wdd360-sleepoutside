@@ -34,7 +34,18 @@ const description = `${product.data.descriptionHtmlSimple}`;
           alt={product.data.name}
         />
 
-        <p class="product-card__price">${product.data.finalPrice}</p>
+        <h4 class="product-card__price">${product.data.finalPrice}</h4>
+
+        {product.data.finalPrice != product.data.suggestedRetailPrice && (
+          <p class="product-card__discount">
+            <span class="product-card__original-price">
+              ${(product.data.suggestedRetailPrice).toFixed(2)}
+            </span>
+              {`(${(100 - (product.data.finalPrice / product.data.suggestedRetailPrice) * 100).toFixed(0)}% off)`}
+          </p>
+        )}
+
+        <!-- <p class="product-card__discount">${product.data.listPrice}</p> -->
 
         <p class="product__color">{product.data.colors[0].colorName}</p>
 
