@@ -9,7 +9,9 @@ function renderCartContents() {
   calculateCartTotal();
 }
 
-// Quantity is hard coded in.
+// Quantity is hard coded in. When we change that, 
+// we'll need to update the total calculations function to
+//  multiply the total price by the quantity.
 function cartItemTemplate(item:Product) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
