@@ -1,8 +1,12 @@
-import { getLocalStorage } from "./utils.mjs";
-import type {Product} from "./types.mjs"
+import { getLocalStorage } from "./utils.mts";
+import type {Product} from "./types.mts"
 
 function renderCartContents() {
-  const cartItems = JSON.parse(getLocalStorage("so-cart"));
+  const cartItems = getLocalStorage("so-cart");
+
+  if(!cartItems || cartItems.length === 0) {
+    return;
+  }
   const htmlItems = cartItems.map((item:Product) => cartItemTemplate(item));
   const listEl = document.querySelector(".product-list")
   if(listEl)  listEl.innerHTML = htmlItems.join("");
@@ -32,8 +36,7 @@ function cartItemTemplate(item:Product) {
 }
 
 function calculateCartTotal() {
-  let total = 0;
-  const cartItems = JSON.parse(getLocalStorage("so-cart")) || [];
+  const cartItems = getLocalStorage("so-cart") || [];
   const Total = cartItems.reduce((acc:number, item:Product) => acc + item.finalPrice, 0);
   if (Total > 0) {
     const totalEl = document.querySelector(".cart-total");

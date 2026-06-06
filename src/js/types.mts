@@ -166,12 +166,10 @@ export interface Order {
 
 // Alert schema
 export interface Alert {
-  _id: string;
-  title: string;
-  type: "warning" | "info" | "promotion";
-  status: "active" | "inactive";
-  createdAt: Date;
-  modifiedAt: Date;
+  _id: string,
+  message: string;
+  background: string;
+  color: string;
 }
 
 export interface QueryParams {
