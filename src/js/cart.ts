@@ -32,7 +32,6 @@ function cartItemTemplate(item:Product) {
 }
 
 function calculateCartTotal() {
-  let total = 0;
   const cartItems = JSON.parse(getLocalStorage("so-cart")) || [];
   const Total = cartItems.reduce((acc:number, item:Product) => acc + item.finalPrice, 0);
   if (Total > 0) {
