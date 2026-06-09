@@ -4,6 +4,11 @@ import { findProductById } from "./productData.mts";
 
 function addProductToCart(product:Product) {
   updateCart("so-cart", product);
+  const cartIcon = document.querySelector(".cart-icon");
+  cartIcon?.classList.add("wobble");
+  setTimeout(() => {
+    cartIcon?.classList.remove("wobble");
+  }, 1000);
 }
 // add to cart button event handler
 async function addToCartHandler(e:Event) {

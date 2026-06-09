@@ -42,6 +42,34 @@ header {
   padding: 0 10px;
 }
 
+/* cart icon animation */
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(-5deg);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.wobble {
+  animation-name: wobble;
+  animation-duration: 0.5s;
+}
+
 .menu-right {
   /* padding-top: 0.5em; */
   display: flex;
