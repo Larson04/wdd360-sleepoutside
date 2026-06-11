@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import auth from "../js/auth.svelte.ts";
 
   let visible = $state(false);
 
@@ -49,9 +50,14 @@
   </button>
 
   <nav class="user__menu" class:open={visible}>
-    <a href="#">Login</a>
-    <a href="#">Profile</a>
+  {#if auth.userStore.isLoggedIn == true}
+    <a href="/logout">Logout</a>
+    <a href="/profile">Profile</a>
     <a href="#">Orders</a>
+
+  {:else}
+    <a href="/login">Login</a>
+  {/if}
   </nav>
 </div>
 
