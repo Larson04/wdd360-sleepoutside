@@ -1,9 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-
-
-import  auth  from '../js/auth.svelte.ts';
-    import { getParam } from '../js/utils.mts';
+    import  auth  from '../js/auth.svelte.ts';
+    import { setLocalStorage, getParam } from '../js/utils.mts';
 
 // what is this?  We give the option to pass a function into our login component that will get called on a successful login. If no function is passed it defaults to one that will redirect the user to another page (like Home).
 let { onSuccess = (path) => { window.location.href = path;} } = $props<{
@@ -28,7 +26,7 @@ async function loginHandler(event: Event) {
         
     }
     catch(error: any){
-        console.error("Login handler caught an error:", error);
+        console.log("Login handler caught an error:", error);
         errorMessage = error.message;
     }
 

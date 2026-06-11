@@ -6,7 +6,7 @@ const baseURL = import.meta.env.PUBLIC_SERVER_URL;
 const userStore = $state({isLoggedIn: false, user: {}, token: ""}) as UserStore;
 
 async function login(email, password){
-    const response = await fetch(`${baseURL}login`, {
+    const response = await fetch(`${baseURL}users/login`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({email, password})
