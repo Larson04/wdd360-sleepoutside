@@ -1,7 +1,7 @@
 import { getLocalStorage } from "./utils.mts";
 import type {Product} from "./types.mts"
 
-function renderCartContents() {
+export function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
 
   if(!cartItems || cartItems.length === 0) {
@@ -43,7 +43,5 @@ function calculateCartTotal() {
     if (totalEl) totalEl.textContent = `Total: $${Total.toFixed(2)}`;
     const footerEl = document.querySelector(".cart-footer");
     if (footerEl) footerEl.classList.remove("hide");
-  }
+  } 
 }
-
-renderCartContents();
