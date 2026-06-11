@@ -29,6 +29,7 @@
     window.addEventListener("scroll", closeMenu);
     window.addEventListener("keydown", handleKeydown);
 
+    auth.checkAuth();
     // 2. Return Cleanup Function
     // Svelte runs this function automatically when the component unmounts
     return () => {
@@ -40,6 +41,9 @@
 </script>
 
 <div class="user">
+{#if auth.userStore.isLoggedIn == true}
+  <p>{auth.userStore.user?.name}</p>
+{/if}
   <button
     class="user__button"
     aria-label="user management"
