@@ -15,12 +15,12 @@
     visible = false;
   }
 
-  // Named function required for removal
+ // Named function required for removal
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === "Escape") {
       closeMenu();
     }
-  }
+  } 
 
   onMount(() => {
     // 1. Add Listeners
