@@ -13,6 +13,8 @@ export function getLocalStorage(key:string) {
 // save data to local storage
 export function setLocalStorage(key:string, data:any) {
   localStorage.setItem(key, JSON.stringify(data));
+  window.dispatchEvent(new Event("cartUpdated"));
+
 }
 
 export function updateCart(key:string, data:any) {
