@@ -1,5 +1,6 @@
 <script lang="ts">
     import UserMenu from "./UserMenu.svelte";
+    import SearchBar from "./SearchBar.svelte";
 </script>
 
 <header class="divider">
@@ -7,6 +8,7 @@
       <img src="/images/noun_Tent_2517.svg" alt="tent for logo" />
       <a href="/"> Sleep<span class="highlight">Outside</span></a>
     </div>
+    <SearchBar />
     <nav class="menu-right">
       <div class="user-menu-container">
         <UserMenu />

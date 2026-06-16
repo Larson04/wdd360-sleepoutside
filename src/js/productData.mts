@@ -20,3 +20,11 @@ export async function findProductById(id:string) {
   console.log(product)
   return product;
 }
+
+export async function searchProducts(query:string) {
+  const response = await fetch(baseURL + `products/search/${query}`);
+  console.log("response", response);
+  const products = await convertToJson(response) as Product[];
+  console.log(products);
+  return products;
+}
