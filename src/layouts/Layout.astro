@@ -3,6 +3,8 @@ import "../css/style.css";
 import Header from "../components/Header.svelte";
 import Footer from "../components/Footer.svelte";
 import UserMenu from "../components/UserMenu.svelte";
+import AlertList from '../components/AlertList.svelte';
+
 let {title} = Astro.props;
 
 ---
@@ -18,6 +20,7 @@ let {title} = Astro.props;
   <body>
     <Header client:load/>
 	<main>
+		<AlertList client:load />
 		<slot />
 	</main>
     <Footer />

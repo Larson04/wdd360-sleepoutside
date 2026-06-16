@@ -21,6 +21,13 @@ export  async function fetchAlerts() {
             return data;
         }
         alertStore.set(data);
+        data.forEach((item: Alert) => {
+            setTimeout(() => {
+                alertStore.update(currentAlerts => {
+                    return currentAlerts.filter(alert => alert._id !== item._id)
+                })
+            }, 3000);
+        });
         return data;
     } catch (error) {
         console.error("Failed to read runtime alert JSON file:", error);
