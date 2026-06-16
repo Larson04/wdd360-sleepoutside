@@ -15,6 +15,10 @@ async function addToCartHandler(e:Event) {
   const target = e.target as HTMLButtonElement
   if(target.dataset.id) {
     const product = await findProductById(target.dataset.id);
+    if(!product) {
+      
+      return;
+    }
     console.log(product);
     addProductToCart(product);
   }

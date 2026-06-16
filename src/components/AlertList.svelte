@@ -6,6 +6,8 @@
         await fetchAlerts();
         console.log("What is inside our store right now?:", $alertStore);
     });
+
+    // $: console.log('AlertList - $alertStore:', $alertStore);
 </script>
 
 <section class="alert-list" >
