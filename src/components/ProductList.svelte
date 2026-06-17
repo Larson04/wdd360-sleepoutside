@@ -54,6 +54,10 @@
   {/each}
 </ul>
 
+{#if selectedProduct} 
+<QuickViewModal product={selectedProduct} onClose={() => selectedProduct = null}/>
+{/if}
+
 <style>
 
   #sort-div {
