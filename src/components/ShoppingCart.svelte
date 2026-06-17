@@ -5,7 +5,6 @@
     onMount(() => {
         renderCartContents();
     });
-    import "../js/cart.ts";
 
     const title = "Cart";
 
