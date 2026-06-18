@@ -18,13 +18,13 @@ export function renderCartContents() {
 //  multiply the total price by the quantity.
 function cartItemTemplate(item:Product) {
   const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
+  <a href="product_pages/${item.id}" class="cart-card__image">
     <img
       src="${item.images.primaryExtraLarge}"
       alt="${item.name}"
     />
   </a>
-  <a href="#">
+  <a href="product_pages/${item.id}">
     <h2 class="card__name">${item.name}</h2>
   </a>
   <p class="cart-card__color">${item.colors[0].colorName}</p>

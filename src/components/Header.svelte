@@ -8,11 +8,18 @@
     function calculateTotalItems(){
       const cartItems = getLocalStorage("so-cart") || [];
       const totalItems = cartItems.length;
+      if (totalItems > 0) {
+        document.querySelector(".total-items")?.classList.remove("hide");
+      }
+      if (totalItems == 0){
+        document.querySelector(".total-items")?.classList.add("hide");
+      }
       return totalItems;
     }
 
     function cartUpdated(){
       totalItems = calculateTotalItems();
+
     }
 
     
