@@ -1,14 +1,23 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { renderCartContents } from '../js/cart.ts';
+  import { onMount } from "svelte";
+  import { renderCartContents, removeItemFromCart } from "../js/cart.ts";
 
-    onMount(() => {
-        renderCartContents();
+  onMount(() => {
+    renderCartContents();
+
+    const listEl = document.querySelector(".product-list");
+
+    listEl?.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+
+      if (target.classList.contains("cart-card__remove")) {
+        const id = target.dataset.id;
+        if (id) removeItemFromCart(id);
+      }
     });
-    import "../js/cart.ts";
+  });
 
-    const title = "Cart";
-
+  const title = "Cart";
 </script>
     <main class="divider">
       <section class="products">

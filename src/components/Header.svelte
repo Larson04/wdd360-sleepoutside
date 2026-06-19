@@ -1,6 +1,33 @@
 <script lang="ts">
     import UserMenu from "./UserMenu.svelte";
     import SearchBar from "./SearchBar.svelte";
+    import { onMount } from "svelte";
+    import { getLocalStorage } from "../js/utils.mts";
+    let totalItems = 0;
+
+    function calculateTotalItems(){
+      const cartItems = getLocalStorage("so-cart") || [];
+      const totalItems = cartItems.length;
+      if (totalItems > 0) {
+        document.querySelector(".total-items")?.classList.remove("hide");
+      }
+      if (totalItems == 0){
+        document.querySelector(".total-items")?.classList.add("hide");
+      }
+      return totalItems;
+    }
+
+    function cartUpdated(){
+      totalItems = calculateTotalItems();
+
+    }
+
+    
+
+    onMount(() => {
+      totalItems = calculateTotalItems();
+      window.addEventListener("cartUpdated", cartUpdated);
+    })
 </script>
 
 <header class="divider">
@@ -39,10 +66,12 @@
               d="M60.1 71.4v3.3h-5.2v-3.4c-1.7-0.3-3.3-0.7-4.6-1 -0.9 6.8-1.1 13.3-0.3 14.5 0.4 0.3 2.9 1.1 8 1.1h0c5 0 8.8-0.7 9.7-1.3 0.8-1.3 0.6-7.7-0.4-14.4C65.5 70.5 62.7 71.1 60.1 71.4z"
             />
 
+
             <!-- <text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Natalia Woodroffe</text>
           <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
           </svg>
-        </a>
+        </a>            
+        <span class="total-items">{totalItems}</span>
       </div>
     </nav>
   </header>
