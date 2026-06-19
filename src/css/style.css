@@ -369,7 +369,7 @@ button {
 .cart-card div {
   grid-row: 2;
   grid-column: 4;
-  input {
+  .cart-card__quantity {
     width: 2rem;
   }
 }
