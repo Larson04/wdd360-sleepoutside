@@ -17,7 +17,7 @@ export async function getProducts(category = "tents") {
 export async function findProductById(id:string) {
   const response = await fetch(baseURL + `products/${id}`);
   const product = await convertToJson(response) as Product;
-  console.log(product)
+  console.log(product);
   return product;
 }
 
