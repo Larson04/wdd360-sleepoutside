@@ -12,6 +12,10 @@ if (id) {
   product = await findProductById(id);
 }
 
+if (!product) {
+  Astro.response.status = 404;
+  Astro.response.statusText = 'Not Found';
+}
 
 let title = `Product ${id} not found`;
 let description = '';
@@ -20,6 +24,8 @@ if (product != null) {
   description = `${product.descriptionHtmlSimple}`;
 
 }
+
+
 
 ---
 
@@ -61,10 +67,13 @@ if (product != null) {
           <p class="product__description" set:html={description}></p>
           
           <div class="product-detail__add">
-              <button id="addToCart" data-id={product.id}>Add to Cart</button>
+              <button  id="addToCart" data-id={product.id}>Add to Cart</button>
           </div>
         )}  
       </section>
     </main>
-  
+
+  <script>
+    import '../../js/product.ts';
+  </script>
 </Layout>

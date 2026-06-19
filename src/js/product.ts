@@ -13,10 +13,11 @@ function addProductToCart(product:Product) {
 // add to cart button event handler
 async function addToCartHandler(e:Event) {
   const target = e.target as HTMLButtonElement
+  console.log("addToCartHandler was activated")
   if(target.dataset.id) {
     const product = await findProductById(target.dataset.id);
     if(!product) {
-      
+      console.log("Product not found");
       return;
     }
     console.log(product);

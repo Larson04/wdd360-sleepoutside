@@ -39,16 +39,33 @@ function cartItemTemplate(item:Product) {
   </a>
   <span data-id="${item.id}" class="cart-card__remove" >X</span>
   <p class="cart-card__color">${item.colors[0].colorName}</p>
-  <p class="cart-card__quantity">qty: </p>
+  <div>
+    <label for="cartQuantity-${item.id}" >qty:</label>
+    <input data-id="${item.id}" type="number" class="cart-card__quantity" id="cartQuantity-${item.id}">
+  </div>
   <p class="cart-card__price">$${item.finalPrice}</p>
 </li>`;
 
   return newItem;
 }
 
+export function updateItemQuantity(id: string, newQuantity: number) {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const index = cartItems.findIndex(
+    (item: Product) => item.id === id
+  );
+  if (index !== -1) {
+    cartItems[index].quantity = newQuantity;
+  }
+
+  setLocalStorage("so-cart", cartItems);
+  renderCartContents();
+}
+
+
 function calculateCartTotal() {
   const cartItems = getLocalStorage("so-cart") || [];
-  const Total = cartItems.reduce((acc:number, item:Product) => acc + item.finalPrice, 0);
+  const Total = cartItems.reduce((acc:number, item:Product) => acc + (item.finalPrice * item.quantity), 0);
   if (Total > 0) {
     const totalEl = document.querySelector(".cart-total");
     if (totalEl) totalEl.textContent = `Total: $${Total.toFixed(2)}`;

@@ -27,7 +27,7 @@ export async function findProductById(id:string) {
     console.log("Here is the product:", product)
     return product;
   } catch (error: any) {
-    console.log("findProductById caught an error", error, "Error Message", error.message);
+    console.log("findProductById caught an error", error);
   }
 }
 
