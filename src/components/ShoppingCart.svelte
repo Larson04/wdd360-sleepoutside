@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { renderCartContents, removeItemFromCart } from "../js/cart.ts";
+  import { renderCartContents, removeItemFromCart, updateItemQuantity } from "../js/cart.ts";
+  import { idText } from "typescript";
 
   onMount(() => {
     renderCartContents();
@@ -15,8 +16,20 @@
         if (id) removeItemFromCart(id);
       }
     });
+
+    listEl?.addEventListener("change", (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.classList.contains("cart-card__quantity")) {
+        const id = target.dataset.id;
+        if(!id) return;
+        const newQuantity = Number(target.value);
+  
+        updateItemQuantity(id, newQuantity);
+      }
+    });
   });
 
+  
   const title = "Cart";
 </script>
     <main class="divider">

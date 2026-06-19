@@ -15,10 +15,20 @@ export async function getProducts(category = "tents") {
 }
 
 export async function findProductById(id:string) {
-  const response = await fetch(baseURL + `products/${id}`);
-  const product = await convertToJson(response) as Product;
-  console.log(product);
-  return product;
+  try {
+    const response = await fetch(baseURL + `products/${id}`);
+    if(!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    const product = await convertToJson(response) as Product;
+    if(!product || product === null) {
+      throw new Error(`Product is undefined or null`);
+    }
+    console.log("Here is the product:", product)
+    return product;
+  } catch (error: any) {
+    console.log("findProductById caught an error", error);
+  }
 }
 
 export async function searchProducts(query:string) {
