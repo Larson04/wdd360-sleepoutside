@@ -1,13 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AlertList from '../components/AlertList.svelte';
 const title = "Home";
 
 ---
 
 <Layout title={title}>
 	<main class="divider">
-		<AlertList client:load />
 		<div class="hero">
 		  <img
 			src="/images/banner-sm.jpg"
