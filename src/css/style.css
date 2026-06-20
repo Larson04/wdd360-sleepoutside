@@ -225,6 +225,10 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+
+  &:hover {
+    box-shadow: 1px 1px 1px 1px #525b0f37;
+  }
 }
 .divider {
   border-bottom: 2px solid var(--primary-color);

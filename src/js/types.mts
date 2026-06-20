@@ -207,3 +207,8 @@ export interface UserStore {
     },
     token:string
    }
+
+export interface Newsletter {
+  name: string,
+  email: string
+}

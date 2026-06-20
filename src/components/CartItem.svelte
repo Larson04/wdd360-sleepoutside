@@ -1,7 +1,7 @@
 <script lang="ts">
     import { tick } from "svelte";
     import type { Product } from "../js/types.mts";
-  import { updateItemQuantity } from "../js/cart";
+    import { updateItemQuantity } from "../js/cart";
 
     let {item, onRemove} = $props<{item: Product; onRemove: (id:string) => void }>();
     let isEditing = $state(false);

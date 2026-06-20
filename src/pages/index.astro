@@ -1,4 +1,6 @@
 ---
+// @ts-ignore
+import NewsletterComponent from '../components/Newsletter.svelte';
 import Layout from '../layouts/Layout.astro';
 const title = "Home";
 
@@ -32,6 +34,7 @@ const title = "Home";
 			<a href="product-list/index.html?category=sleeping-bags"><img src="https://wdd360.netlify.app/images/category-icons/noun_Sleeping_Bag_3544775.svg" alt="Sleeping Bag Icon from Noun Project: Mustofa Bayu"></img>Sleeping Bags</a>
 			<a href="product-list/index.html?category=hammocks"><img src="https://wdd360.netlify.app/images/category-icons/noun_Hammock_791143.svg" alt="Hammock Icon from Noun Project: Paul Richard"></img>Hammocks</a>
 		</section>
+		<NewsletterComponent client:load />
 		<section class="products">
 		</section>
 	  </main>
