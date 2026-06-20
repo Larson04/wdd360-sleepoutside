@@ -20,6 +20,7 @@ export function setLocalStorage(key:string, data:any) {
 export function updateCart(key:string, data:any) {
   const storedCart = getLocalStorage(key);
   const cart = Array.isArray(storedCart) ? storedCart : [];
+  data.quantity = 1;
   cart.push(data);
   setLocalStorage(key, cart);
 }

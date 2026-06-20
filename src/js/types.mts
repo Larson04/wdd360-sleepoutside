@@ -17,6 +17,7 @@ export interface Product {
   brand: Brand;
   listPrice: number;
   finalPrice: number;
+  quantity: number;
 }
 
 export interface Review {
@@ -206,3 +207,8 @@ export interface UserStore {
     },
     token:string
    }
+
+export interface Newsletter {
+  name: string,
+  email: string
+}

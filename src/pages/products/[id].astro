@@ -1,60 +1,79 @@
 ---
+export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
-import { type CollectionEntry, getCollection } from "astro:content";
+import { findProductById } from "../../js/productData.mts";
 
 // map though all products to create a page for each one
-export async function getStaticPaths() {
-  const products = await getCollection("products");
+const { id } = Astro.params;
 
-  return products.map((product) => ({
-    params: { id: product.id },
-    props: product
-  }));
+let product = null;
+
+if (id) {
+  product = await findProductById(id);
 }
-type Props = CollectionEntry<"products">;
 
-// get the product data from the props to use in the template below. The actual data is in product.data
-const product = Astro.props;
-const title = product.data.name;
+if (!product) {
+  Astro.response.status = 404;
+  Astro.response.statusText = 'Not Found';
+}
 
-const description = `${product.data.descriptionHtmlSimple}`;
+let title = `Product ${id} not found`;
+let description = '';
+if (product != null) {
+  title = product.name;
+  description = `${product.descriptionHtmlSimple}`;
+
+}
+
+
+
 ---
-<Layout {title}>
-  <script src="../../js/product.ts"></script>
-  
+
+<Layout {title}>  
     <main class="divider">
       <section class="product-detail">
-        <h3>{product.data.brand.name}</h3>
+        {product == null && (
+          <h3>{title}</h3>
+        )}
+        {product &&  (
 
-        <h2 class="divider">{product.data.nameWithoutBrand}</h2>
-
-        <img
+          <h3>{product.brand.name}</h3>
+          
+          <h2 class="divider">{product.nameWithoutBrand}</h2>
+          
+          <img
           class="divider"
-          src={product.data.images.primaryExtraLarge}
-          alt={product.data.name}
-        />
-
-        <h4 class="product-card__price">${product.data.finalPrice}</h4>
-
-        {product.data.finalPrice != product.data.suggestedRetailPrice && (
+          src={product.images.primaryExtraLarge}
+          alt={product.name}
+          />
+          
+          <h4 class="product-card__price">${product.finalPrice}</h4>
+          
+        )}
+        {product && product.finalPrice != product.suggestedRetailPrice && (
           <p class="product-card__discount">
-            <span class="product-card__original-price">
-              ${(product.data.suggestedRetailPrice).toFixed(2)}
-            </span>
-              {`(${(100 - (product.data.finalPrice / product.data.suggestedRetailPrice) * 100).toFixed(0)}% off)`}
+          <span class="product-card__original-price">
+              ${(product.suggestedRetailPrice).toFixed(2)}
+          </span>
+              {`(${(100 - (product.finalPrice / product.suggestedRetailPrice) * 100).toFixed(0)}% off)`}
           </p>
         )}
+              
+              <!-- <p class="product-card__discount">${product.data.listPrice}</p> -->
+        {product && (
 
-        <!-- <p class="product-card__discount">${product.data.listPrice}</p> -->
-
-        <p class="product__color">{product.data.colors[0].colorName}</p>
-
-        <p class="product__description" set:html={description}></p>
-
-        <div class="product-detail__add">
-          <button id="addToCart" data-id={product.data.id}>Add to Cart</button>
-        </div>
+          <p class="product__color">{product.colors[0].colorName}</p>
+          
+          <p class="product__description" set:html={description}></p>
+          
+          <div class="product-detail__add">
+              <button  id="addToCart" data-id={product.id}>Add to Cart</button>
+          </div>
+        )}  
       </section>
     </main>
-  
+
+  <script>
+    import '../../js/product.ts';
+  </script>
 </Layout>
